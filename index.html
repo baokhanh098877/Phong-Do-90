@@ -224,6 +224,73 @@ body{font-family:'Inter',sans-serif;background:var(--bg);color:var(--white);font
   #bar{padding:10px 16px}
   .rc-stats{flex-wrap:wrap;gap:14px}
 }
+
+/* ── MODAL OVERLAY ── */
+.modal-overlay{position:fixed;inset:0;background:rgba(0,0,0,.75);backdrop-filter:blur(6px);z-index:999;display:flex;align-items:center;justify-content:center;padding:20px;opacity:0;pointer-events:none;transition:opacity .25s}
+.modal-overlay.open{opacity:1;pointer-events:all}
+.modal-box{background:var(--bg2);border:1px solid var(--rule2);border-radius:20px;width:100%;max-width:520px;max-height:90svh;overflow-y:auto;position:relative;transform:translateY(24px);transition:transform .25s}
+.modal-overlay.open .modal-box{transform:translateY(0)}
+.modal-close{position:absolute;top:16px;right:16px;width:32px;height:32px;border-radius:50%;background:var(--bg3);border:1px solid var(--rule2);color:var(--white-s);font-size:18px;cursor:pointer;display:flex;align-items:center;justify-content:center;line-height:1;transition:all .15s;z-index:2}
+.modal-close:hover{background:var(--bg4);color:var(--white)}
+
+/* STEP 1 — FORM */
+.modal-header{padding:28px 28px 0}
+.modal-badge{display:inline-flex;align-items:center;gap:6px;background:var(--gold-l);border:1px solid var(--gold-b);color:var(--gold);font-size:11px;font-weight:600;padding:4px 12px;border-radius:100px;letter-spacing:.06em;margin-bottom:14px}
+.modal-title{font-family:'Playfair Display',serif;font-size:22px;font-weight:800;color:var(--white);margin-bottom:6px;line-height:1.2}
+.modal-sub{font-size:13px;color:var(--white-s);font-weight:300;margin-bottom:22px}
+.modal-price-row{display:flex;align-items:center;justify-content:space-between;background:var(--bg3);border:1px solid var(--rule2);border-radius:12px;padding:14px 18px;margin-bottom:20px}
+.modal-price-label{font-size:13px;color:var(--white-s)}
+.modal-price-val{font-family:'Playfair Display',serif;font-size:28px;font-weight:800;color:var(--green)}
+.modal-price-cross{font-size:12px;color:var(--white-s);text-decoration:line-through;margin-top:2px}
+
+.modal-body{padding:0 28px 28px}
+.form-group{margin-bottom:14px}
+.form-label{font-size:12px;font-weight:600;color:var(--white-m);margin-bottom:6px;display:block;letter-spacing:.04em}
+.form-label span{color:var(--red)}
+.form-input{width:100%;background:var(--bg3);border:1px solid var(--rule2);border-radius:10px;padding:11px 14px;font-size:14px;color:var(--white);font-family:inherit;outline:none;transition:border-color .15s}
+.form-input:focus{border-color:var(--gold-b)}
+.form-input::placeholder{color:var(--white-xs)}
+.form-row{display:grid;grid-template-columns:1fr 1fr;gap:12px}
+.form-submit{width:100%;background:var(--gold);color:#111;font-weight:700;font-size:16px;padding:16px;border-radius:100px;border:none;cursor:pointer;font-family:inherit;letter-spacing:.02em;transition:all .2s;margin-top:6px;box-shadow:0 6px 24px rgba(245,158,11,.3)}
+.form-submit:hover{background:var(--gold-d);transform:translateY(-2px)}
+.form-note{text-align:center;font-size:11px;color:var(--white-s);margin-top:10px;letter-spacing:.04em}
+
+/* STEP 2 — QR */
+.modal-step{display:none}
+.modal-step.active{display:block}
+.qr-section{padding:24px 28px;text-align:center}
+.qr-title{font-family:'Playfair Display',serif;font-size:20px;font-weight:800;color:var(--white);margin-bottom:6px}
+.qr-sub{font-size:13px;color:var(--white-s);font-weight:300;margin-bottom:20px}
+.qr-box{background:white;border-radius:16px;padding:16px;display:inline-block;margin-bottom:16px}
+.qr-img{width:200px;height:200px;display:block}
+.qr-info{background:var(--bg3);border:1px solid var(--rule2);border-radius:12px;padding:16px 18px;text-align:left;margin-bottom:16px}
+.qr-info-row{display:flex;justify-content:space-between;align-items:center;padding:8px 0;border-bottom:1px solid var(--rule)}
+.qr-info-row:last-child{border-bottom:none}
+.qr-info-label{font-size:12px;color:var(--white-s)}
+.qr-info-val{font-size:13px;font-weight:600;color:var(--white)}
+.qr-info-val.green{color:var(--green)}
+.qr-copy{display:inline-flex;align-items:center;gap:6px;background:var(--bg4);border:1px solid var(--rule2);border-radius:8px;padding:4px 10px;font-size:11px;color:var(--white-s);cursor:pointer;transition:all .15s}
+.qr-copy:hover{border-color:var(--gold-b);color:var(--gold)}
+.qr-alert{background:var(--green-l);border:1px solid var(--green-b);border-radius:10px;padding:12px 14px;font-size:12px;color:var(--white-m);line-height:1.6;margin-bottom:16px}
+.qr-alert strong{color:var(--green)}
+.qr-done-btn{width:100%;background:var(--bg3);border:1px solid var(--rule2);color:var(--white-m);font-size:14px;font-weight:500;padding:14px;border-radius:100px;border-width:1px;cursor:pointer;font-family:inherit;transition:all .15s}
+.qr-done-btn:hover{border-color:var(--green-b);color:var(--green)}
+
+/* STEP 3 — SUCCESS */
+.success-section{padding:40px 28px;text-align:center}
+.success-icon{font-size:56px;margin-bottom:16px}
+.success-title{font-family:'Playfair Display',serif;font-size:22px;font-weight:800;color:var(--white);margin-bottom:10px}
+.success-sub{font-size:14px;color:var(--white-m);line-height:1.7;font-weight:300;max-width:340px;margin:0 auto 24px}
+.success-info{background:var(--bg3);border:1px solid var(--green-b);border-radius:12px;padding:14px 18px;font-size:13px;color:var(--white-m);text-align:left;margin-bottom:20px}
+.success-close{background:var(--green);color:white;font-weight:700;font-size:15px;padding:14px 40px;border-radius:100px;border:none;cursor:pointer;font-family:inherit;transition:background .2s}
+.success-close:hover{background:var(--green-d)}
+
+@media(max-width:520px){
+  .modal-box{border-radius:16px}
+  .modal-header,.modal-body,.qr-section,.success-section{padding-left:20px;padding-right:20px}
+  .form-row{grid-template-columns:1fr}
+}
+
 </style>
 </head>
 <body>
@@ -635,7 +702,7 @@ body{font-family:'Inter',sans-serif;background:var(--bg);color:var(--white);font
         <li class="pc-row"><span class="pc-check">✓</span> <strong style="color:var(--gold)">[Tài liệu kèm]</strong> PDF 15 bữa ăn văn phòng không tăng mỡ bụng</li>
         <li class="pc-row"><span class="pc-check">✓</span> Cộng đồng học viên nam private — check-in hàng ngày</li>
       </ul>
-      <a href="#" class="pc-cta">Đăng ký Phong Độ 90 ngay →</a>
+      <button onclick="openModal()" class="pc-cta" style="border:none;cursor:pointer">Đăng ký Phong Độ 90 ngay →</button>
       <div class="pc-note">Thanh toán an toàn · Nhận toàn bộ tài liệu qua Gmail ngay sau khi đăng ký</div>
     </div>
   </div>
@@ -681,7 +748,7 @@ body{font-family:'Inter',sans-serif;background:var(--bg);color:var(--white);font
     <div class="final-inner">
       <h2>90 ngày từ hôm nay —<br><em>bạn muốn đứng ở đâu?</em></h2>
       <p>Đám cưới. Họp lớp. Kỳ nghỉ biển. Bạn muốn cởi áo mà không cần nghĩ đến bụng không?</p>
-      <a href="#pricing" class="hero-btn">Bắt đầu Phong Độ 90 →</a>
+      <button onclick="openModal()" class="hero-btn" style="border:none;cursor:pointer">Bắt đầu Phong Độ 90 →</button>
       <div class="final-note">Chỉ còn 20 chỗ đợt đầu · Giá 790.000đ · Tăng sau khi đủ học viên</div>
     </div>
   </div>
@@ -691,5 +758,182 @@ body{font-family:'Inter',sans-serif;background:var(--bg);color:var(--white);font
 const bar=document.getElementById('bar');
 window.addEventListener('scroll',()=>{bar.classList.toggle('show',scrollY>500)},{passive:true});
 </script>
+
+<!-- MODAL THANH TOÁN -->
+<div class="modal-overlay" id="payModal">
+  <div class="modal-box">
+    <button class="modal-close" onclick="closeModal()">×</button>
+
+    <!-- STEP 1: FORM THÔNG TIN -->
+    <div class="modal-step active" id="step1">
+      <div class="modal-header">
+        <div class="modal-badge">🔥 Giá ra mắt · Chỉ còn 20 chỗ</div>
+        <div class="modal-title">Đăng ký Phong Độ 90</div>
+        <div class="modal-sub">Điền thông tin để nhận toàn bộ tài liệu qua Gmail sau khi thanh toán</div>
+        <div class="modal-price-row">
+          <div>
+            <div class="modal-price-label">Học phí toàn khoá 90 ngày</div>
+            <div class="modal-price-cross">Giá gốc: 1.490.000đ</div>
+          </div>
+          <div class="modal-price-val">790.000đ</div>
+        </div>
+      </div>
+      <div class="modal-body">
+        <div class="form-group">
+          <label class="form-label">Họ và tên <span>*</span></label>
+          <input class="form-input" id="f_name" type="text" placeholder="Nguyễn Văn A">
+        </div>
+        <div class="form-row">
+          <div class="form-group">
+            <label class="form-label">Số điện thoại <span>*</span></label>
+            <input class="form-input" id="f_phone" type="tel" placeholder="0912 345 678">
+          </div>
+          <div class="form-group">
+            <label class="form-label">Gmail <span>*</span></label>
+            <input class="form-input" id="f_email" type="email" placeholder="example@gmail.com">
+          </div>
+        </div>
+        <div class="form-group">
+          <label class="form-label">Địa chỉ <span>*</span></label>
+          <input class="form-input" id="f_addr" type="text" placeholder="Quận/Huyện, Tỉnh/Thành phố">
+        </div>
+        <button class="form-submit" onclick="goToQR()">Tiếp tục — Xem hướng dẫn thanh toán →</button>
+        <div class="form-note">🔒 Thông tin được bảo mật · Không chia sẻ bên thứ 3</div>
+      </div>
+    </div>
+
+    <!-- STEP 2: QR THANH TOÁN -->
+    <div class="modal-step" id="step2">
+      <div class="qr-section">
+        <div class="qr-title">Chuyển khoản MB Bank</div>
+        <div class="qr-sub">Quét QR hoặc chuyển khoản thủ công theo thông tin bên dưới</div>
+        <div class="qr-box">
+          <!-- THAY ẢNH QR MB BANK VÀO ĐÂY -->
+          <div id="qr-placeholder" style="width:200px;height:200px;background:#f0f0f0;border-radius:8px;display:flex;align-items:center;justify-content:center;flex-direction:column;gap:8px">
+            <div style="font-size:32px">🏦</div>
+            <div style="font-size:12px;color:#666;text-align:center;padding:0 16px">[Upload ảnh QR MB Bank vào đây]</div>
+          </div>
+        </div>
+        <div class="qr-info">
+          <div class="qr-info-row">
+            <span class="qr-info-label">Ngân hàng</span>
+            <span class="qr-info-val">MB Bank</span>
+          </div>
+          <div class="qr-info-row">
+            <span class="qr-info-label">Số tài khoản</span>
+            <div style="display:flex;align-items:center;gap:8px">
+              <span class="qr-info-val" id="stk">[SỐ TÀI KHOẢN]</span>
+              <span class="qr-copy" onclick="copySTK()">📋 Copy</span>
+            </div>
+          </div>
+          <div class="qr-info-row">
+            <span class="qr-info-label">Chủ tài khoản</span>
+            <span class="qr-info-val">[TÊN CHỦ TK]</span>
+          </div>
+          <div class="qr-info-row">
+            <span class="qr-info-label">Số tiền</span>
+            <span class="qr-info-val green">790.000đ</span>
+          </div>
+          <div class="qr-info-row" id="nd-row">
+            <span class="qr-info-label">Nội dung CK</span>
+            <div style="display:flex;align-items:center;gap:8px">
+              <span class="qr-info-val" id="nd-val">PD90 [Tên]</span>
+              <span class="qr-copy" onclick="copyND()">📋 Copy</span>
+            </div>
+          </div>
+        </div>
+        <div class="qr-alert">
+          <strong>⚠️ Quan trọng:</strong> Ghi đúng nội dung chuyển khoản để xác nhận tự động. Sau khi chuyển khoản, tài liệu sẽ được gửi qua Gmail trong vòng <strong>24 giờ</strong>.
+        </div>
+        <button class="qr-done-btn" onclick="goToSuccess()">Tôi đã chuyển khoản xong ✓</button>
+      </div>
+    </div>
+
+    <!-- STEP 3: SUCCESS -->
+    <div class="modal-step" id="step3">
+      <div class="success-section">
+        <div class="success-icon">🎉</div>
+        <div class="success-title">Đăng ký thành công!</div>
+        <div class="success-sub">Cảm ơn bạn đã đăng ký Phong Độ 90. Chúng tôi sẽ xác nhận thanh toán và gửi toàn bộ tài liệu qua Gmail trong vòng 24 giờ.</div>
+        <div class="success-info" id="success-summary"></div>
+        <button class="success-close" onclick="closeModal()">Đóng lại</button>
+      </div>
+    </div>
+
+  </div>
+</div>
+
+
+<script>
+function openModal(){
+  document.getElementById('payModal').classList.add('open');
+  document.body.style.overflow='hidden';
+}
+function closeModal(){
+  document.getElementById('payModal').classList.remove('open');
+  document.body.style.overflow='';
+  // Reset về step 1
+  setTimeout(()=>{
+    showStep(1);
+    document.getElementById('f_name').value='';
+    document.getElementById('f_phone').value='';
+    document.getElementById('f_email').value='';
+    document.getElementById('f_addr').value='';
+  },300);
+}
+function showStep(n){
+  document.querySelectorAll('.modal-step').forEach(s=>s.classList.remove('active'));
+  document.getElementById('step'+n).classList.add('active');
+}
+function goToQR(){
+  const name=document.getElementById('f_name').value.trim();
+  const phone=document.getElementById('f_phone').value.trim();
+  const email=document.getElementById('f_email').value.trim();
+  const addr=document.getElementById('f_addr').value.trim();
+  if(!name||!phone||!email||!addr){
+    alert('Vui lòng điền đầy đủ thông tin bắt buộc.');return;
+  }
+  if(!email.endsWith('@gmail.com')){
+    alert('Vui lòng nhập đúng địa chỉ Gmail (@gmail.com).');return;
+  }
+  // Cập nhật nội dung chuyển khoản theo tên
+  const firstName = name.split(' ').pop();
+  document.getElementById('nd-val').textContent = 'PD90 ' + firstName.toUpperCase();
+  showStep(2);
+}
+function goToSuccess(){
+  const name=document.getElementById('f_name').value.trim();
+  const email=document.getElementById('f_email').value.trim();
+  document.getElementById('success-summary').innerHTML =
+    '<div style="display:flex;flex-direction:column;gap:6px">' +
+    '<div style="display:flex;justify-content:space-between"><span style="color:var(--white-s);font-size:12px">Họ tên</span><span style="font-weight:600;font-size:13px">'+name+'</span></div>' +
+    '<div style="display:flex;justify-content:space-between"><span style="color:var(--white-s);font-size:12px">Gmail nhận tài liệu</span><span style="font-weight:600;font-size:13px">'+email+'</span></div>' +
+    '<div style="display:flex;justify-content:space-between"><span style="color:var(--white-s);font-size:12px">Số tiền</span><span style="font-weight:600;font-size:13px;color:var(--green)">790.000đ</span></div>' +
+    '<div style="margin-top:6px;padding-top:8px;border-top:1px solid var(--rule);font-size:12px;color:var(--white-s)">📩 Tài liệu sẽ được gửi trong vòng 24 giờ</div>' +
+    '</div>';
+  showStep(3);
+}
+function copySTK(){
+  const stk = document.getElementById('stk').textContent;
+  navigator.clipboard.writeText(stk).then(()=>{
+    const btn = event.target;
+    btn.textContent='✓ Đã copy';
+    setTimeout(()=>btn.textContent='📋 Copy',2000);
+  });
+}
+function copyND(){
+  const nd = document.getElementById('nd-val').textContent;
+  navigator.clipboard.writeText(nd).then(()=>{
+    const btn = event.target;
+    btn.textContent='✓ Đã copy';
+    setTimeout(()=>btn.textContent='📋 Copy',2000);
+  });
+}
+// Đóng khi click ngoài
+document.getElementById('payModal').addEventListener('click',function(e){
+  if(e.target===this) closeModal();
+});
+</script>
+
 </body>
 </html>
